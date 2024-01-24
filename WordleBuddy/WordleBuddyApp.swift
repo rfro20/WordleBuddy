@@ -9,10 +9,11 @@ import SwiftUI
 
 @main
 struct WordleBuddyApp: App {
+    @StateObject var model = WordleBuddyLogic()
     var body: some Scene {
         WindowGroup {
             WordleGenView()
-                .environmentObject(WordleBuddyLogic())
+                .environmentObject(model)
         }
     }
 }

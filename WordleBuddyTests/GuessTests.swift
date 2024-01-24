@@ -10,42 +10,54 @@ import XCTest
 
 final class GuessTests: XCTestCase {
     let grayLetters: [Letter] = [
-        Letter(letter: "a", color: .Gray),
-        Letter(letter: "b", color: .Gray),
-        Letter(letter: "c", color: .Gray),
-        Letter(letter: "d", color: .Gray),
-        Letter(letter: "e", color: .Gray)
+        Letter(letter: "a", loc: 0, color: .Gray),
+        Letter(letter: "b", loc: 1, color: .Gray),
+        Letter(letter: "c", loc: 2, color: .Gray),
+        Letter(letter: "d", loc: 3, color: .Gray),
+        Letter(letter: "e", loc: 4, color: .Gray)
     ]
     
     let yellowLetters: [Letter] = [
-        Letter(letter: "a", color: .Yellow),
-        Letter(letter: "b", color: .Yellow),
-        Letter(letter: "c", color: .Yellow),
-        Letter(letter: "d", color: .Yellow),
-        Letter(letter: "e", color: .Yellow)
+        Letter(letter: "a", loc: 0, color: .Yellow),
+        Letter(letter: "b", loc: 1, color: .Yellow),
+        Letter(letter: "c", loc: 2, color: .Yellow),
+        Letter(letter: "d", loc: 3, color: .Yellow),
+        Letter(letter: "e", loc: 4, color: .Yellow)
     ]
     
     let greenLetters: [Letter] = [
-        Letter(letter: "a", color: .Green),
-        Letter(letter: "b", color: .Green),
-        Letter(letter: "c", color: .Green),
-        Letter(letter: "d", color: .Green),
-        Letter(letter: "e", color: .Green)
+        Letter(letter: "a", loc: 0, color: .Green),
+        Letter(letter: "b", loc: 1, color: .Green),
+        Letter(letter: "c", loc: 2, color: .Green),
+        Letter(letter: "d", loc: 3, color: .Green),
+        Letter(letter: "e", loc: 4, color: .Green)
     ]
     
     func testGray() throws {
         let guess = Guess(word: grayLetters)
-        XCTAssert(guess.regexes.count == 2)
+        let regexes = guess.getRegex()
+        XCTAssert(regexes.count == 5)
+        for pattern in regexes {
+            XCTAssert(((try? pattern.wholeMatch(in: "fghij")) != nil))
+        }
     }
     
     func testGreen() throws {
         let guess = Guess(word: greenLetters)
-        XCTAssert(guess.regexes.count == 1)
+        let regexes = guess.getRegex()
+        XCTAssert(regexes.count == 5)
+        for pattern in regexes {
+            XCTAssert(((try? pattern.wholeMatch(in: "abcde")) != nil))
+        }
     }
     
     func testYellow() throws {
         let guess = Guess(word: yellowLetters)
-        XCTAssert(guess.regexes.count == 6)
+        let regexes = guess.getRegex()
+        XCTAssert(regexes.count == 5)
+        for pattern in regexes {
+            XCTAssert(((try? pattern.wholeMatch(in: "bcdea")) != nil))
+        }
     }
     
     func testMix() throws {
@@ -57,6 +69,27 @@ final class GuessTests: XCTestCase {
             grayLetters[4]
         ]
         let guess = Guess(word: mixture)
-        XCTAssert(guess.regexes.count == 4)
+        XCTAssert(guess.getRegex().count == 5)
+    }
+    
+    func testMultipleLetters() throws {
+        /*
+         Guess:  River
+         Actual: Giver
+                 rGGGG
+         */
+        
+        let guess = Guess(word: [
+            Letter(letter: "r", loc: 0, color: .Gray),
+            Letter(letter: "i", loc: 1, color: .Green),
+            Letter(letter: "v", loc: 2, color: .Green),
+            Letter(letter: "e", loc: 3, color: .Green),
+            Letter(letter: "r", loc: 4, color: .Green),
+        ])
+        
+        let regexes = guess.getRegex()
+        print(regexes.count)
+        XCTAssert(regexes.count == 8)
+        
     }
 }

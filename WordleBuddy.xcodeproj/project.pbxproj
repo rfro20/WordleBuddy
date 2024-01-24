@@ -13,12 +13,21 @@
 		6512C99D2B3F661900321596 /* WordleBuddyTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6512C99C2B3F661900321596 /* WordleBuddyTabView.swift */; };
 		6512C99F2B3F667F00321596 /* WordleGenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6512C99E2B3F667F00321596 /* WordleGenView.swift */; };
 		6512C9A12B3F66DF00321596 /* FilterUsedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6512C9A02B3F66DF00321596 /* FilterUsedView.swift */; };
+		656D9C072B5A493500A369B4 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656D9C062B5A493500A369B4 /* Model.swift */; };
+		656D9C092B5C4C0800A369B4 /* AlertTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656D9C082B5C4C0800A369B4 /* AlertTextView.swift */; };
 		65BFC19E2B1D25C4008CD049 /* WordleBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BFC19D2B1D25C4008CD049 /* WordleBuddyApp.swift */; };
 		65BFC1A22B1D25C5008CD049 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65BFC1A12B1D25C5008CD049 /* Assets.xcassets */; };
 		65BFC1A62B1D25C5008CD049 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65BFC1A52B1D25C5008CD049 /* Preview Assets.xcassets */; };
 		65BFC1B02B1D25C6008CD049 /* WordleBuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BFC1AF2B1D25C6008CD049 /* WordleBuddyTests.swift */; };
 		65BFC1BA2B1D25C6008CD049 /* WordleBuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BFC1B92B1D25C6008CD049 /* WordleBuddyUITests.swift */; };
 		65BFC1BC2B1D25C6008CD049 /* WordleBuddyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BFC1BB2B1D25C6008CD049 /* WordleBuddyUITestsLaunchTests.swift */; };
+		65C194812B48AB8E009D0304 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 65C194802B48AB8E009D0304 /* SwiftSoup */; };
+		65C194832B4E2CC3009D0304 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C194822B4E2CC3009D0304 /* Launch Screen.storyboard */; };
+		65C194872B4E3404009D0304 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C194862B4E3404009D0304 /* Global.swift */; };
+		65C1948A2B558C93009D0304 /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C194892B558C93009D0304 /* Views.swift */; };
+		65C1948C2B55909F009D0304 /* GeneratedWordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C1948B2B55909F009D0304 /* GeneratedWordsView.swift */; };
+		65C194922B5591AD009D0304 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C194912B5591AD009D0304 /* KeyboardView.swift */; };
+		65C194962B5763CD009D0304 /* LetterBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C194952B5763CD009D0304 /* LetterBoxView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +54,8 @@
 		6512C99C2B3F661900321596 /* WordleBuddyTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleBuddyTabView.swift; sourceTree = "<group>"; };
 		6512C99E2B3F667F00321596 /* WordleGenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleGenView.swift; sourceTree = "<group>"; };
 		6512C9A02B3F66DF00321596 /* FilterUsedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterUsedView.swift; sourceTree = "<group>"; };
+		656D9C062B5A493500A369B4 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		656D9C082B5C4C0800A369B4 /* AlertTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTextView.swift; sourceTree = "<group>"; };
 		65BFC19A2B1D25C4008CD049 /* WordleBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordleBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BFC19D2B1D25C4008CD049 /* WordleBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleBuddyApp.swift; sourceTree = "<group>"; };
 		65BFC1A12B1D25C5008CD049 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,6 +66,12 @@
 		65BFC1B52B1D25C6008CD049 /* WordleBuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordleBuddyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BFC1B92B1D25C6008CD049 /* WordleBuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleBuddyUITests.swift; sourceTree = "<group>"; };
 		65BFC1BB2B1D25C6008CD049 /* WordleBuddyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleBuddyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		65C194822B4E2CC3009D0304 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		65C194862B4E3404009D0304 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		65C194892B558C93009D0304 /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
+		65C1948B2B55909F009D0304 /* GeneratedWordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedWordsView.swift; sourceTree = "<group>"; };
+		65C194912B5591AD009D0304 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		65C194952B5763CD009D0304 /* LetterBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterBoxView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65C194812B48AB8E009D0304 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,7 +103,9 @@
 		65BFC1912B1D25C4008CD049 = {
 			isa = PBXGroup;
 			children = (
+				65C194822B4E2CC3009D0304 /* Launch Screen.storyboard */,
 				65BFC19C2B1D25C4008CD049 /* WordleBuddy */,
+				65C194882B558C59009D0304 /* Extensions */,
 				65BFC1AE2B1D25C6008CD049 /* WordleBuddyTests */,
 				65BFC1B82B1D25C6008CD049 /* WordleBuddyUITests */,
 				65BFC19B2B1D25C4008CD049 /* Products */,
@@ -105,14 +125,13 @@
 		65BFC19C2B1D25C4008CD049 /* WordleBuddy */ = {
 			isa = PBXGroup;
 			children = (
+				65C194852B4E33F7009D0304 /* Global */,
+				65C194842B4E320A009D0304 /* Views */,
 				65BFC19D2B1D25C4008CD049 /* WordleBuddyApp.swift */,
 				6512C9982B3CA5DB00321596 /* model.swift */,
 				6512C9962B3CA5A200321596 /* words.txt */,
 				65BFC1A12B1D25C5008CD049 /* Assets.xcassets */,
 				65BFC1A32B1D25C5008CD049 /* WordleBuddy.entitlements */,
-				6512C99C2B3F661900321596 /* WordleBuddyTabView.swift */,
-				6512C99E2B3F667F00321596 /* WordleGenView.swift */,
-				6512C9A02B3F66DF00321596 /* FilterUsedView.swift */,
 				65BFC1A42B1D25C5008CD049 /* Preview Content */,
 			);
 			path = WordleBuddy;
@@ -144,6 +163,37 @@
 			path = WordleBuddyUITests;
 			sourceTree = "<group>";
 		};
+		65C194842B4E320A009D0304 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6512C99C2B3F661900321596 /* WordleBuddyTabView.swift */,
+				6512C99E2B3F667F00321596 /* WordleGenView.swift */,
+				6512C9A02B3F66DF00321596 /* FilterUsedView.swift */,
+				65C1948B2B55909F009D0304 /* GeneratedWordsView.swift */,
+				65C194912B5591AD009D0304 /* KeyboardView.swift */,
+				65C194952B5763CD009D0304 /* LetterBoxView.swift */,
+				656D9C082B5C4C0800A369B4 /* AlertTextView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		65C194852B4E33F7009D0304 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				65C194862B4E3404009D0304 /* Global.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		65C194882B558C59009D0304 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				65C194892B558C93009D0304 /* Views.swift */,
+				656D9C062B5A493500A369B4 /* Model.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -160,6 +210,9 @@
 			dependencies = (
 			);
 			name = WordleBuddy;
+			packageProductDependencies = (
+				65C194802B48AB8E009D0304 /* SwiftSoup */,
+			);
 			productName = WordleBuddy;
 			productReference = 65BFC19A2B1D25C4008CD049 /* WordleBuddy.app */;
 			productType = "com.apple.product-type.application";
@@ -232,6 +285,9 @@
 				Base,
 			);
 			mainGroup = 65BFC1912B1D25C4008CD049;
+			packageReferences = (
+				65C1947F2B48AB8E009D0304 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 65BFC19B2B1D25C4008CD049 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -250,6 +306,7 @@
 			files = (
 				65BFC1A62B1D25C5008CD049 /* Preview Assets.xcassets in Resources */,
 				6512C9972B3CA5A200321596 /* words.txt in Resources */,
+				65C194832B4E2CC3009D0304 /* Launch Screen.storyboard in Resources */,
 				65BFC1A22B1D25C5008CD049 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,8 +334,15 @@
 			files = (
 				6512C99F2B3F667F00321596 /* WordleGenView.swift in Sources */,
 				6512C9992B3CA5DB00321596 /* model.swift in Sources */,
+				65C194872B4E3404009D0304 /* Global.swift in Sources */,
+				65C194922B5591AD009D0304 /* KeyboardView.swift in Sources */,
+				65C1948A2B558C93009D0304 /* Views.swift in Sources */,
+				65C1948C2B55909F009D0304 /* GeneratedWordsView.swift in Sources */,
 				6512C99D2B3F661900321596 /* WordleBuddyTabView.swift in Sources */,
 				6512C9A12B3F66DF00321596 /* FilterUsedView.swift in Sources */,
+				656D9C072B5A493500A369B4 /* Model.swift in Sources */,
+				65C194962B5763CD009D0304 /* LetterBoxView.swift in Sources */,
+				656D9C092B5C4C0800A369B4 /* AlertTextView.swift in Sources */,
 				65BFC19E2B1D25C4008CD049 /* WordleBuddyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +504,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WordleBuddy/Preview Content\"";
+				DEVELOPMENT_TEAM = R5GYQ7CN2Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -448,10 +513,11 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -476,6 +542,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WordleBuddy/Preview Content\"";
+				DEVELOPMENT_TEAM = R5GYQ7CN2Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -484,10 +551,11 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -629,6 +697,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		65C1947F2B48AB8E009D0304 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		65C194802B48AB8E009D0304 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65C1947F2B48AB8E009D0304 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 65BFC1922B1D25C4008CD049 /* Project object */;
 }
