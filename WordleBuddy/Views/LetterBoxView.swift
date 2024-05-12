@@ -59,6 +59,6 @@ struct LetterBoxView: View {
 }
 
 #Preview {
-    return LetterBoxView(letter: .constant(nil), row: 0, col: 0, gameFlow: .WordleGen)
+    return LetterBoxView(letter: .constant(Letter(letter: "a", loc: 0, color: .Green)), row: 0, col: 0, gameFlow: .WordleGen)
         .environmentObject(WordleBuddyLogic())
 }

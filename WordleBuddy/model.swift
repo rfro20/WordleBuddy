@@ -16,6 +16,10 @@ enum WordleBuddyFlow {
 }
 
 class WordleBuddyLogic: ObservableObject {
+    
+    // For programatically changing between light and dark mode
+    @Published var inDarkMode: Bool = false
+    
     // Grid of each letter and its color
     @Published var letters: [[Letter?]]
     
@@ -23,12 +27,16 @@ class WordleBuddyLogic: ObservableObject {
     var currentRow: Int = 0
     var currentCol: Int = 0
     
+    // Used to display text on the filter used page after a user hits submit
+    @Published var filterusedText: String = ""
+    
     // Used to display alert messages such as "duplicate word" or "invalid entry"
     @Published var alertText: String = ""
     
     // Used to "shake" a specific row if the user entered a duplicate word in that row
     @Published var shakeRow: [Int]
-
+    @Published var shakeRowFilterUsed: Int
+    
     // Letters the user will input for filterused functionality
     @Published var filterusedLetters: [Letter?]
     
@@ -54,6 +62,7 @@ class WordleBuddyLogic: ObservableObject {
     init() {
         letters = Array(repeating: Array(repeating: nil, count: width), count: height)
         shakeRow = Array(repeating: 0, count: width)
+        shakeRowFilterUsed = 0
         filterusedLetters = Array(repeating: nil, count: width)
         readWordleWords()
         Task {
@@ -114,7 +123,6 @@ class WordleBuddyLogic: ObservableObject {
         }
     }
     
-    
     // Given an input letter, tries to append to the board if all 25 spots are not filled.
     // If they are all filled, returns false.
     func appendLetter(letter: String) -> Bool {
@@ -150,6 +158,13 @@ class WordleBuddyLogic: ObservableObject {
         self.shakeRow[row] = 0
     }
     
+    func shakeRowFilter() {
+        withAnimation {
+            self.shakeRowFilterUsed += 1
+        }
+        self.shakeRowFilterUsed = 0
+    }
+    
     // Utility function to make sure the current line of input in the board is not already present
     private func validateNoDuplicates() -> Bool {
         var words = Set<String>()
@@ -182,20 +197,22 @@ class WordleBuddyLogic: ObservableObject {
         return true
     }
     
-    func appendFilterLetter(letter: String) {
+    func appendFilterLetter(letter: String) -> Bool {
         guard currentColFilter < 5 else {
-            return
+            return false
         }
         filterusedLetters[currentColFilter] = Letter(letter: letter, loc: filterusedLetters.count, color: .Gray)
         currentColFilter += 1
+        return true
     }
     
-    func deleteFilterLetter() {
+    func deleteFilterLetter() -> Bool {
         guard currentColFilter > 0 else {
-            return
+            return false
         }
         currentColFilter -= 1
         filterusedLetters[currentColFilter] = nil
+        return true
     }
     
     // Rotates the color in the letters matrix at the specified position. Order is: Green -> Yellow -> Gray -> ...
@@ -227,6 +244,15 @@ class WordleBuddyLogic: ObservableObject {
         }
         withAnimation(.linear(duration: 0.2).delay(1.3)) {
             self.alertText = ""
+        }
+    }
+    
+    func showFiltered(text: String) {
+        withAnimation {
+            self.filterusedText = text
+        }
+        withAnimation(.linear(duration: 0.2).delay(4)) {
+            self.filterusedText = ""
         }
     }
     
@@ -329,7 +355,6 @@ struct Guess: Identifiable, CustomStringConvertible {
             count[letter!.letter] = letters
         }
         
-        
         // Get count of each letter in word for processing by-letter
         for ch in self.word {
             if count.contains(where: {$0.key == ch?.letter}) {
@@ -340,27 +365,13 @@ struct Guess: Identifiable, CustomStringConvertible {
         }
         
         for (_, letterList) in count {
-            ans += multipleLetterRegexFlow2(letters: letterList)
-            //ans += multipleLetterRegexFlow(letters: letterList, inWord: false)
-            
-//            if letterList.count > 1 {
-//                // Multiple letter functionality
-//                for regexpr in multipleLetterRegexFlow(letters: letterList, inWord: false) {
-//                    ans.append(regexpr)
-//                }
-//            } else {
-//                // Regular letter functionality
-//                let letterStruct = letterList[0]
-//                for regexpr in regularRegexFlow(letter: letterStruct) {
-//                    ans.append(regexpr)
-//                }
-//            }
+            ans += getRegexes(letters: letterList)
         }
         
         return ans
     }
     
-    func multipleLetterRegexFlow2(letters: [Letter]) -> [Regex<Substring>] {
+    func getRegexes(letters: [Letter]) -> [Regex<Substring>] {
         if letters.count == 0 {
             return []
         }
@@ -399,116 +410,6 @@ struct Guess: Identifiable, CustomStringConvertible {
             return ans
         } else {
             return [notInWord(ch: currLetter)]
-        }
-    }
-    
-    func multipleLetterRegexFlow(letters: [Letter], inWord: Bool) -> [Regex<Substring>] {
-        if letters.count == 0 {
-            return []
-        }
-        
-        let one = letters[0]
-        let remainder = Array(letters.suffix(from: 1))
-        switch one.color {
-        case .Green:
-            return [inPos(ch: one.letter, loc: one.loc)] + multipleLetterRegexFlow(letters: remainder, inWord: true)
-        case .Yellow:
-            return [mustHave(ch: one.letter), cantBeInPos(ch: one.letter, loc: one.loc)] + multipleLetterRegexFlow(letters: remainder, inWord: true)
-        case .Gray:
-            if inWord {
-                // If the first letter in sorted order is gray, then they're all gray..
-                var ans: [Regex<Substring>] = []
-                for letter in letters {
-                    ans.append(cantBeInPos(ch: letter.letter, loc: letter.loc))
-                }
-                return ans
-            } else {
-                return [notInWord(ch: one.letter)]
-            }
-        }
-    }
-    
-    
-    func regularRegexFlow(letter: Letter) -> [Regex<Substring>] {
-        var ans: [Regex<Substring>] = []
-        switch letter.color {
-        case .Gray:
-            ans.append(notInWord(ch: letter.letter))
-            return ans
-        case .Yellow:
-            ans.append(mustHave(ch: letter.letter))
-            ans.append(cantBeInPos(ch: letter.letter, loc: letter.loc))
-            return ans
-        case .Green:
-            ans.append(inPos(ch: letter.letter, loc: letter.loc))
-            return ans
-        }
-    }
-    
-    /* Cases:
-        Case 1: Green Letter + Yellow Letter
-            Ex) Allan (Word is Hello)
-                _YG__
-        3 Regexes:
-                At least 2 l's in the string -> .*l.*l := mustHaveTwo()
-                Must be an l in the middle -> ..l.. := inPos()
-                Can't be an l for the second character -> .(?!l).... := cantBeInPos()
-                
-        Case 2: Green Letter + Gray Letter
-            Ex) Hello (word is False)
-                __GGr_
-        2 Regexes:
-                Must be an l in the middle -> ..l.. := inPos()
-                Can't be an l in any of the other 4 positions -> (?!l).(?!l)..(?!l).(?!l). := cantBeInPos() called 4 times
-     
-        Case 3: Yellow Letter + Gray Letter
-            Ex) Hello (word is later)
-                __YGr_
-        N Regexes:
-                Must have l in word -> .*l.* := mustHave()
-                Can't have l in middle position or 4th position -> := cantBeInPos() for 3 and 4
-     */
-    func twoLetterRegexFlow(letters: [Letter]) -> [Regex<Substring>] {
-        if letters.count > 2 {
-            print("There are more than two letters here!")
-        }
-        var ans: [Regex<Substring>] = []
-        
-        let one = letters[0], two = letters[1]
-        
-        switch (one.color, two.color) {
-        case (.Green, .Yellow):
-            ans.append(mustHaveTwo(ch: one.letter))
-            ans.append(inPos(ch: one.letter, loc: one.loc))
-            ans.append(cantBeInPos(ch: two.letter, loc: two.loc))
-            return ans
-        case (.Green, .Gray):
-            ans.append(inPos(ch: one.letter, loc: one.loc))
-            for i in 0..<5 {
-                if i != one.loc {
-                    ans.append(cantBeInPos(ch: two.letter, loc: i))
-                }
-            }
-            return ans
-        case (.Yellow, .Gray):
-            ans.append(mustHave(ch: one.letter))
-            ans.append(cantBeInPos(ch: one.letter, loc: one.loc))
-            ans.append(cantBeInPos(ch: two.letter, loc: two.loc))
-            return ans
-        case (.Gray, .Gray):
-            ans.append(notInWord(ch: one.letter))
-            return ans
-        case (.Green, .Green):
-            ans.append(inPos(ch: one.letter, loc: one.loc))
-            ans.append(inPos(ch: two.letter, loc: two.loc))
-            return ans
-        case (.Yellow, .Yellow):
-            ans.append(mustHaveTwo(ch: one.letter))
-            ans.append(cantBeInPos(ch: one.letter, loc: one.loc))
-            ans.append(cantBeInPos(ch: two.letter, loc: two.loc))
-            return ans
-        default:
-            return []
         }
     }
 }
@@ -550,35 +451,7 @@ enum LetterColor: Int {
     case Gray = 2
 }
 
-extension ChoiceOf where RegexOutput == Substring {
-    init<S: Sequence<String>>(_ components: S) {
-        let exps = components.map { AlternationBuilder.buildExpression($0) }
-        
-        guard !exps.isEmpty else {
-            fatalError("Empty choice!")
-        }
-        
-        self = exps.dropFirst().reduce(AlternationBuilder.buildPartialBlock(first: exps[0])) { acc, next in
-            AlternationBuilder.buildPartialBlock(accumulated: acc, next: next)
-        }
-    }
-}
-
-
 // Regex Stuff
-
-func mustHave(ch: String) -> Regex<Substring> {
-    return Regex {
-        ZeroOrMore {
-            .any
-        }
-        ch
-        ZeroOrMore {
-            .any
-        }
-    }
-}
-
 func mustHaveCount(ch: String, count: Int) -> Regex<Substring> {
     return Regex {
         Repeat(count: count) {
@@ -589,22 +462,6 @@ func mustHaveCount(ch: String, count: Int) -> Regex<Substring> {
             ZeroOrMore {
                 .any
             }
-        }
-    }
-}
-
-func mustHaveTwo(ch: String) -> Regex<Substring> {
-    return Regex {
-        ZeroOrMore {
-            .any
-        }
-        ch
-        ZeroOrMore {
-            .any
-        }
-        ch
-        ZeroOrMore {
-            .any
         }
     }
 }

@@ -36,6 +36,7 @@ struct WordleGenView: View {
                         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                     }) {
                         Text("Clear")
+                            .foregroundStyle(.white)
                             .frame(height:10)
                             .font(.system(size:16, weight:.medium, design:.monospaced))
                     }
@@ -53,6 +54,7 @@ struct WordleGenView: View {
                         }
                     }) {
                         Text("Generate 🫣")
+                            .foregroundStyle(.white)
                             .frame(height:10)
                             .font(.system(size:16, weight:.medium, design:.monospaced))
                     }
@@ -60,15 +62,23 @@ struct WordleGenView: View {
                     .alert("No words entered!", isPresented: $emptySubmit) {
                         Button("Ok") {}
                     }
-                    .navigationDestination(for: [Substring].self) { generated in
-                        GeneratedWordsView(generatedWords: generated)
-                    }
+                    
+                }
+            }
+            .navigationDestination(for: [Substring].self) { substr in
+                switch substr {
+                case ["settings"]:
+                    SettingsView()
+                        .environmentObject(model)
+                default:
+                    GeneratedWordsView(generatedWords: substr)
                 }
             }
             .frame(width: Global.boardWidth, height: Global.boardWidth * 6 / 5)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
+                        navigationPath.append(["settings"])
                         // TODO: Set up settings page
                         // 1) Dark Mode
                         // any other settings can be added here
@@ -77,6 +87,7 @@ struct WordleGenView: View {
                             .scaleEffect(1.2)
                     }
                 }
+                
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         // TODO: Set up help page

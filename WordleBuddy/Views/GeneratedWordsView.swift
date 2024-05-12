@@ -27,6 +27,9 @@ struct GeneratedWordsView: View {
             if displayWords.count > 0 || isFiltering {
                 Text("All Possible Words")
                     .font(.system(size: 32, weight: .heavy, design: .monospaced))
+                // TODO: See if word count can be cleaner
+                Text("Word Count: \(displayWords.count)")
+                    .font(.system(size: 16, weight: .light, design: .monospaced))
                 List(displayWords, id:\.self) { word in
                     Text("\(String(word))")
                         .font(.system(size: 24, weight: .medium, design: .monospaced))

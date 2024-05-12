@@ -12,7 +12,7 @@ struct WordleBuddyApp: App {
     @StateObject var model = WordleBuddyLogic()
     var body: some Scene {
         WindowGroup {
-            WordleGenView()
+            WordleBuddyTabView()
                 .environmentObject(model)
         }
     }

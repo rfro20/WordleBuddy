@@ -37,12 +37,18 @@ struct KeyboardView: View {
 
                 }
                 Button {
-                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    let deleted : Bool
+                    
                     if gameFlow == .WordleGen {
-                        model.deleteLetter()
+                        deleted = model.deleteLetter()
                     } else {
-                        model.deleteFilterLetter()
+                        deleted = model.deleteFilterLetter()
                     }
+                       
+                    if deleted {
+                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    }
+                
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 10)
@@ -66,11 +72,15 @@ struct KeyboardButtonView: View {
     
     var body: some View {
         Button {
-            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            let added: Bool
             if gameFlow == .WordleGen {
-                model.appendLetter(letter: self.letter)
+                added = model.appendLetter(letter: self.letter)
             } else {
-                model.appendFilterLetter(letter: self.letter)
+                added = model.appendFilterLetter(letter: self.letter)
+            }
+            
+            if added {
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
             }
         } label: {
             ZStack {
