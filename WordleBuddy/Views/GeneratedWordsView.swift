@@ -69,6 +69,6 @@ struct GeneratedWordsView: View {
 }
 
 #Preview {
-    GeneratedWordsView(generatedWords: ["cigar", "logic", "balls"])
+    GeneratedWordsView(generatedWords: ["cigar", "logic"])
         .environmentObject(WordleBuddyLogic())
 }
